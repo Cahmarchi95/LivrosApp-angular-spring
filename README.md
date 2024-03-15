@@ -1,8 +1,8 @@
 # crud-livros
-Projeto de estudo para desenvolvimento de uma API de livros.
+Projeto de estudo para desenvolvimento de uma API de livros feita em Spring Boot
 
 # :computer: Tecnologias utilizadas
-- Java, SpringBoot, Jpa, H2
+- Java, SpringBoot, Jpa, H2 
 
 # :white_check_mark: Endpoint principal
 - "/livros"
