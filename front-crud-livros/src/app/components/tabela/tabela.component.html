@@ -1,0 +1,144 @@
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="table-primary">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Título</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Editora</th>
+        <th scope="col">Descrição</th>
+        <th scope="col">Gênero</th>
+        <th scope="col">Ano de lançamento</th>
+        <th scope="col">
+          <a routerLink=""
+            ><button class="btn btn-dark btn-sm">Voltar</button></a
+          >
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let l of livros; index as i">
+        <th scope="row">{{ l.id }}</th>
+        <td>{{ l.titulo }}</td>
+        <td>{{ l.autor }}</td>
+        <td>{{ l.editora }}</td>
+        <td style="word-break: break-all">{{ l.descricao }}</td>
+        <td>{{ l.genero }}</td>
+        <td>{{ l.anoLancamento }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-primary btn-sm"
+            (click)="selecionarLivro(l.id)"
+            *ngIf="btnCadastro"
+          >
+            Selecionar
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-danger btn-sm"
+            *ngIf="!btnCadastro"
+            (click)="removerLivros()"
+          >
+            Excluir
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-dark btn-sm"
+            *ngIf="!btnCadastro"
+            (click)="open(mymodal)"
+          >
+            Editar
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-outline-dark btn-sm"
+            *ngIf="!btnCadastro"
+            (click)="cancelar()"
+          >
+            Cancelar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--Modal -->
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">Editar um livro</h5>
+    <button
+      type="button"
+      class="close btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form>
+      <label>Título:</label>
+      <input
+        type="text"
+        placeholder="Título"
+        class="form-control"
+        name="titulo"
+        [(ngModel)]="livroSelecionado.titulo"
+      />
+      <label>Autor(a):</label>
+      <input
+        type="text"
+        placeholder="Autor"
+        class="form-control"
+        name="autor"
+        [(ngModel)]="livroSelecionado.autor"
+      />
+      <label>Editora:</label>
+      <input
+        type="text"
+        placeholder="Editora"
+        class="form-control"
+        name="editora"
+        [(ngModel)]="livroSelecionado.editora"
+      />
+      <label>Descrição:</label>
+      <input
+        type="text"
+        placeholder="Descrição"
+        class="form-control"
+        name="descricao"
+        [(ngModel)]="livroSelecionado.descricao"
+      />
+      <label>Gênero:</label>
+      <input
+        type="text"
+        placeholder="Gênero"
+        class="form-control"
+        name="genero"
+        [(ngModel)]="livroSelecionado.genero"
+      />
+      <label>Ano de Lançamento:</label>
+      <input
+        type="text"
+        placeholder="Ano de lançamento"
+        class="form-control"
+        name="anoLancamento"
+        [(ngModel)]="livroSelecionado.anoLancamento"
+      />
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-primary btn-save"
+      (click)="salvarEdicao()"
+    >
+      Salvar Edição
+    </button>
+  </div>
+</ng-template>

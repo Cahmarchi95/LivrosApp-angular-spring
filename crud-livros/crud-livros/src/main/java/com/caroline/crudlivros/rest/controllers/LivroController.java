@@ -1,61 +1,61 @@
 package com.caroline.crudlivros.rest.controllers;
 
 import com.caroline.crudlivros.model.entity.Livro;
-import com.caroline.crudlivros.model.repository.LivroRepository;
+import com.caroline.crudlivros.services.LivroService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/livros")
 public class LivroController {
 
     @Autowired
-    private LivroRepository livroRepository;
+    private LivroService livroService;
 
     @PostMapping
-    public Livro cadastrar(@RequestBody @Valid Livro livro){
-        return livroRepository.save(livro);
+    public ResponseEntity<Livro> cadastrar(@RequestBody @Valid Livro livro) {
+        this.livroService.cadastrar(livro);
+        return new ResponseEntity<Livro>(HttpStatus.CREATED);
     }
 
     @GetMapping
-    public Iterable<Livro>listarTodos(Model model){
+    public ResponseEntity<List<Livro>> listarTodos() {
+        List<Livro> livros = livroService.listarTodos();
 
-        return livroRepository.findAll();
+        if (livros == null || livros.isEmpty()) {
+            return new ResponseEntity<List<Livro>>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<List<Livro>>(livros, HttpStatus.OK);
     }
 
     @GetMapping("{id}")
-    public Livro listarPorId(@PathVariable Integer id){
-        return livroRepository
-                .findById(id)
-                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Livro não encontrado"));
+    public Livro listarPorId(@PathVariable Integer id) {
+        return livroService
+                .listarPorId(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Livro não encontrado"));
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void excluir(@PathVariable Integer id){
-        livroRepository
-                .findById(id)
-                .map(livro -> {
-                    livroRepository.delete(livro);
-                    return Void.TYPE;
-                })
-                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Livro não encontrado"));
+        Livro livro = livroService.listarPorId(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Livro não encontrado"));
+        livroService.excluir(id, livro);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void atualizar(@PathVariable Integer id, @RequestBody @Valid Livro livroAtualizado){
-        livroRepository
-                .findById(id)
-                .map(livro -> {
-                    livroAtualizado.setId(livro.getId());
-                    return livroRepository.save(livroAtualizado);
-                })
-                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Livro não encontrado"));
+        livroService.listarPorId(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Livro não encontrado"));
+        livroService.atualizar(id, livroAtualizado);
+
     }
 
 }

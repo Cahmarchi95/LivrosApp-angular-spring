@@ -1,0 +1,60 @@
+<form>
+  <img src="assets/livro.png" alt="livro" />
+
+  <h4 class="fw-semibold">Cadastro de livros</h4>
+
+  <input
+    type="text"
+    placeholder="Título"
+    class="form-control"
+    name="titulo"
+    [(ngModel)]="livro.titulo"
+  />
+  <input
+    type="text"
+    placeholder="Autor(a)"
+    class="form-control"
+    name="autor"
+    [(ngModel)]="livro.autor"
+  />
+  <input
+    type="text"
+    placeholder="Editora"
+    class="form-control"
+    name="nome"
+    [(ngModel)]="livro.editora"
+  />
+  <input
+    type="text"
+    placeholder="Descrição"
+    class="form-control"
+    name="descricao"
+    [(ngModel)]="livro.descricao"
+  />
+  <input
+    type="text"
+    placeholder="Gênero"
+    class="form-control"
+    name="genero"
+    [(ngModel)]="livro.genero"
+  />
+  <input
+    type="text"
+    placeholder="Ano de lançamento"
+    class="form-control"
+    name="anoLancamento"
+    [(ngModel)]="livro.anoLancamento"
+  />
+
+  <div class="d-grid gap-2">
+    <input
+      type="button"
+      value="Cadastrar"
+      class="btn btn-primary"
+      (click)="cadastrarLivros()"
+    />
+    <a routerLink="/listaLivros"
+      ><button class="btn btn-dark">Ver livros cadastrados</button></a
+    >
+  </div>
+</form>
