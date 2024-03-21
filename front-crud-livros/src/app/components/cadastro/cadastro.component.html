@@ -1,58 +1,165 @@
-<form>
+<form [formGroup]="cadastroForm" (ngSubmit)="cadastrarLivros()">
   <img src="assets/livro.png" alt="livro" />
 
   <h4 class="fw-semibold">Cadastro de livros</h4>
-
-  <input
-    type="text"
-    placeholder="Título"
-    class="form-control"
-    name="titulo"
-    [(ngModel)]="livro.titulo"
-  />
-  <input
-    type="text"
-    placeholder="Autor(a)"
-    class="form-control"
-    name="autor"
-    [(ngModel)]="livro.autor"
-  />
-  <input
-    type="text"
-    placeholder="Editora"
-    class="form-control"
-    name="nome"
-    [(ngModel)]="livro.editora"
-  />
-  <input
-    type="text"
-    placeholder="Descrição"
-    class="form-control"
-    name="descricao"
-    [(ngModel)]="livro.descricao"
-  />
-  <input
-    type="text"
-    placeholder="Gênero"
-    class="form-control"
-    name="genero"
-    [(ngModel)]="livro.genero"
-  />
-  <input
-    type="text"
-    placeholder="Ano de lançamento"
-    class="form-control"
-    name="anoLancamento"
-    [(ngModel)]="livro.anoLancamento"
-  />
-
-  <div class="d-grid gap-2">
+  <div class="form-group">
     <input
-      type="button"
-      value="Cadastrar"
-      class="btn btn-primary"
-      (click)="cadastrarLivros()"
+      type="text"
+      placeholder="Título"
+      class="form-control"
+      formControlName="titulo"
+      [(ngModel)]="livro.titulo"
+      [ngClass]="{
+        'is-invalid': submitted && cadastroForm.controls['titulo'].errors
+      }"
     />
+    <div
+      *ngIf="submitted && cadastroForm.controls['titulo'].errors"
+      class="text-danger"
+    >
+      <div
+        class="error"
+        *ngIf="submitted && cadastroForm.controls['titulo'].errors['required']"
+      >
+        Título é obrigatório!
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input
+      type="text"
+      placeholder="Autor(a)"
+      class="form-control"
+      formControlName="autor"
+      [(ngModel)]="livro.autor"
+      [ngClass]="{
+        'is-invalid': submitted && cadastroForm.controls['autor'].errors
+      }"
+    />
+    <div
+      *ngIf="submitted && cadastroForm.controls['autor'].errors"
+      class="text-danger"
+    >
+      <div
+        class="error"
+        *ngIf="submitted && cadastroForm.controls['autor'].errors['required']"
+      >
+        Autor(a) é obrigatório(a)!
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input
+      type="text"
+      placeholder="Editora"
+      class="form-control"
+      formControlName="editora"
+      [(ngModel)]="livro.editora"
+      [ngClass]="{
+        'is-invalid': submitted && cadastroForm.controls['editora'].errors
+      }"
+    />
+
+    <div
+      *ngIf="submitted && cadastroForm.controls['editora'].errors"
+      class="text-danger"
+    >
+      <div
+        class="error"
+        *ngIf="submitted && cadastroForm.controls['editora'].errors['required']"
+      >
+        Editora é obrigatório!
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input
+      type="text"
+      placeholder="Descrição"
+      class="form-control"
+      formControlName="descricao"
+      [(ngModel)]="livro.descricao"
+      [ngClass]="{
+        'is-invalid': submitted && cadastroForm.controls['descricao'].errors
+      }"
+    />
+    <div
+      *ngIf="submitted && cadastroForm.controls['descricao'].errors"
+      class="text-danger"
+    >
+      <div
+        class="error"
+        *ngIf="
+          submitted && cadastroForm.controls['descricao'].errors['minLength']
+        "
+      >
+        Descrição deve ter no mínimo 100 caracteres
+      </div>
+      <div
+        class="error"
+        *ngIf="
+          submitted && cadastroForm.controls['descricao'].errors['required']
+        "
+      >
+        Descrição é obrigatória!
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input
+      type="text"
+      placeholder="Gênero"
+      class="form-control"
+      formControlName="genero"
+      [(ngModel)]="livro.genero"
+      [ngClass]="{
+        'is-invalid': submitted && cadastroForm.controls['genero'].errors
+      }"
+    />
+    <div
+      *ngIf="submitted && cadastroForm.controls['genero'].errors"
+      class="text-danger"
+    >
+      <div
+        class="error"
+        *ngIf="submitted && cadastroForm.controls['genero'].errors['required']"
+      >
+        Gênero é obrigatório!
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input
+      type="number"
+      placeholder="Ano de lançamento"
+      class="form-control"
+      formControlName="anoLancamento"
+      [(ngModel)]="livro.anoLancamento"
+      [ngClass]="{
+        'is-invalid': submitted && cadastroForm.controls['anoLancamento'].errors
+      }"
+    />
+    <div
+      *ngIf="submitted && cadastroForm.controls['anoLancamento'].errors"
+      class="text-danger"
+    >
+      <div
+        class="error"
+        *ngIf="
+          submitted && cadastroForm.controls['anoLancamento'].errors['required']
+        "
+      >
+        Ano de lançamento é obrigatório!
+      </div>
+    </div>
+  </div>
+  <div class="d-grid gap-2 form-group">
+    <input type="submit" value="Cadastrar" class="btn btn-primary" />
     <a routerLink="/listaLivros"
       ><button class="btn btn-dark">Ver livros cadastrados</button></a
     >
