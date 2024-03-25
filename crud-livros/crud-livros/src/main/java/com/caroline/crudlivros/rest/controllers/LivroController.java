@@ -1,5 +1,6 @@
 package com.caroline.crudlivros.rest.controllers;
 
+import com.caroline.crudlivros.model.dto.LivroDto;
 import com.caroline.crudlivros.model.entity.Livro;
 import com.caroline.crudlivros.services.LivroService;
 import jakarta.validation.Valid;
@@ -19,8 +20,8 @@ public class LivroController {
     private LivroService livroService;
 
     @PostMapping
-    public ResponseEntity<Livro> cadastrar(@RequestBody @Valid Livro livro) {
-        this.livroService.cadastrar(livro);
+    public ResponseEntity<Livro> cadastrar(@RequestBody @Valid LivroDto livroDto) {
+        this.livroService.cadastrar(livroDto);
         return new ResponseEntity<Livro>(HttpStatus.CREATED);
     }
 
@@ -51,10 +52,10 @@ public class LivroController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void atualizar(@PathVariable Integer id, @RequestBody @Valid Livro livroAtualizado){
+    public void atualizar(@PathVariable Integer id, @RequestBody @Valid LivroDto livroDto){
         livroService.listarPorId(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Livro não encontrado"));
-        livroService.atualizar(id, livroAtualizado);
+        livroService.atualizar(id, livroDto);
 
     }
 
