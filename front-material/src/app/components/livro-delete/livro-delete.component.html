@@ -1,0 +1,59 @@
+<p>
+  <mat-toolbar color="accent">
+    <mat-icon>delete</mat-icon>
+    <span class="title">Excluir livro</span>
+  </mat-toolbar>
+</p>
+<div class="card-wrapper">
+  <mat-card>
+    <form [formGroup]="formulario">
+      <mat-form-field class="full-width">
+        <mat-label>Título:</mat-label>
+        <input formControlName="titulo" matInput placeholder="Título" />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Autor(a):</mat-label>
+        <input formControlName="autor" matInput placeholder="Autor(a)" />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Editora:</mat-label>
+        <input formControlName="editora" matInput placeholder="Editora" />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Descrição:</mat-label>
+        <input
+          formControlName="descricao"
+          matInput
+          placeholder="Descrição"
+          minlength="100"
+          maxlength="500"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Gênero:</mat-label>
+        <input formControlName="genero" matInput placeholder="Gênero" />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Ano de lançamento:</mat-label>
+        <input
+          formControlName="anoLancamento"
+          matInput
+          placeholder="Ano de lançamento"
+        />
+      </mat-form-field>
+
+      <button mat-raised-button color="accent" (click)="excluir()">
+        Excluir
+      </button>
+
+      <button mat-raised-button color="primary" (click)="cancel()">
+        Cancelar
+      </button>
+    </form>
+  </mat-card>
+</div>

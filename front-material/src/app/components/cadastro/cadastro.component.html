@@ -1,0 +1,97 @@
+<form [formGroup]="formulario" (ngSubmit)="submit()" submitted="true">
+  <img src="assets/book.png" alt="livro" />
+  <mat-form-field class="full-width">
+    <mat-label>Título:</mat-label>
+    <input formControlName="titulo" matInput placeholder="Título" />
+  </mat-form-field>
+  <div *ngIf="submitted && formulario.controls['titulo'].errors">
+    <div *ngIf="formulario.controls['titulo'].errors['required']" class="error">
+      Título é obrigatório
+    </div>
+  </div>
+  <mat-form-field class="full-width">
+    <mat-label>Autor(a):</mat-label>
+    <input formControlName="autor" matInput placeholder="Autor(a)" />
+  </mat-form-field>
+  <div *ngIf="submitted && formulario.controls['autor'].errors">
+    <div *ngIf="formulario.controls['autor'].errors['required']" class="error">
+      Autor(a) é obrigatório
+    </div>
+  </div>
+
+  <mat-form-field class="full-width">
+    <mat-label>Editora:</mat-label>
+    <input formControlName="editora" matInput placeholder="Editora" />
+  </mat-form-field>
+  <div *ngIf="submitted && formulario.controls['editora'].errors">
+    <div
+      *ngIf="formulario.controls['editora'].errors['required']"
+      class="error"
+    >
+      Editora é obrigatório
+    </div>
+  </div>
+
+  <mat-form-field class="full-width">
+    <mat-label>Descrição:</mat-label>
+    <input
+      formControlName="descricao"
+      matInput
+      placeholder="Descrição"
+      minlength="100"
+      maxlength="500"
+    />
+  </mat-form-field>
+  <div *ngIf="submitted && formulario.controls['descricao'].errors">
+    <div
+      *ngIf="formulario.controls['descricao'].errors['required']"
+      class="error"
+    >
+      Descrição é obrigatório
+    </div>
+    <div
+      *ngIf="formulario.controls['descricao'].hasError('minlength')"
+      class="error"
+    >
+      Descrição deve ter no mínimo 100 caracteres
+    </div>
+    <div
+      *ngIf="formulario.controls['descricao'].hasError('maxlength')"
+      class="error"
+    >
+      Descrição deve ter no máximo 500 caracteres
+    </div>
+  </div>
+
+  <mat-form-field class="full-width">
+    <mat-label>Gênero:</mat-label>
+    <input formControlName="genero" matInput placeholder="Gênero" />
+  </mat-form-field>
+  <div *ngIf="submitted && formulario.controls['genero'].errors">
+    <div *ngIf="formulario.controls['genero'].errors['required']" class="error">
+      Gênero é obrigatório
+    </div>
+  </div>
+
+  <mat-form-field class="full-width">
+    <mat-label>Ano de lançamento:</mat-label>
+    <input
+      formControlName="anoLancamento"
+      matInput
+      placeholder="Ano de lançamento"
+    />
+  </mat-form-field>
+  <div *ngIf="submitted && formulario.controls['anoLancamento'].errors">
+    <div
+      *ngIf="formulario.controls['anoLancamento'].errors['required']"
+      class="error"
+    >
+      Ano de lançamento é obrigatório
+    </div>
+  </div>
+
+  <button mat-raised-button color="primary">Cadastrar</button>
+  <a routerLink="/listaLivros"
+    ><button mat-raised-button color="accent">Ver livros cadastrados</button></a
+  >
+</form>

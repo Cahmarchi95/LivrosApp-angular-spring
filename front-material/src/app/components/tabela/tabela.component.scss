@@ -1,0 +1,29 @@
+.example-container {
+  margin: 10px auto;
+  width: 95%;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.title {
+  margin-left: 5px;
+}
+
+.link-button {
+  color: #fafafa;
+  text-decoration: none;
+}
+
+.edit {
+  margin-bottom: 10px;
+}
+
+.edit > i {
+  color: #3f51b5;
+}
+
+.delete > i {
+  color: #ff4081;
+}
