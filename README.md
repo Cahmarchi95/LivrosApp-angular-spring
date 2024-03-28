@@ -2,7 +2,7 @@
 Projeto de estudo para desenvolvimento de uma API de livros feita em Spring Boot e Frontend em Angular
 
 # :computer: Tecnologias utilizadas
-- Java, SpringBoot, Jpa, H2, Angular, Bootstrap
+- Java, SpringBoot, Jpa, H2, Angular, Bootstrap, AngularMaterial
 
 # :white_check_mark: Endpoint principal
 - "/livros"
@@ -15,7 +15,7 @@ Projeto de estudo para desenvolvimento de uma API de livros feita em Spring Boot
   
 - Metódo: GET - Endpoint: "livros/{id}" - Retorna os atributos de um livro específico, recebendo como parâmetro o id do livro.
   
-- Método: PUT - Endpoint: "livros/{id}" - Faz o update de um ou mais atributos de um livro em específico, recebendo como parâmetro o id do livro
+- Método: PUT - Endpoint: "livros/update/{id}" - Faz o update de um ou mais atributos de um livro em específico, recebendo como parâmetro o id do livro
   
-- Método: DELETE - Endpoint: "livros/{id}" - Faz a exclusão de um livro em específico, recebendo como parâmetro o id do livro
+- Método: DELETE - Endpoint: "livros/delete/{id}" - Faz a exclusão de um livro em específico, recebendo como parâmetro o id do livro
 
