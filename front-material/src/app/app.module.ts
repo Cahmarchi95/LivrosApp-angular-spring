@@ -16,10 +16,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { TabelaComponent } from './components/tabela/tabela.component';
 import { LivroUpdateComponent } from './components/livro-update/livro-update.component';
 import { LivroDeleteComponent } from './components/livro-delete/livro-delete.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,7 @@ import { LivroDeleteComponent } from './components/livro-delete/livro-delete.com
     TabelaComponent,
     LivroUpdateComponent,
     LivroDeleteComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +43,8 @@ import { LivroDeleteComponent } from './components/livro-delete/livro-delete.com
     MatTableModule,
     MatToolbarModule,
     MatCardModule,
+    MatTooltipModule,
+    MatSnackBarModule,
     HttpClientModule,
     ReactiveFormsModule,
   ],

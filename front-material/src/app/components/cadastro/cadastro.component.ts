@@ -38,10 +38,6 @@ export class CadastroComponent implements OnInit {
     });
   }
 
-  resetForm() {
-    this.formulario.reset();
-  }
-
   submit() {
     this.submitted = true;
     if (this.formulario.invalid) {
@@ -59,9 +55,10 @@ export class CadastroComponent implements OnInit {
 
     this.cadastroService.save(livro).subscribe((resposta) => {
       this.livros.push(resposta);
-      this.resetForm();
-      alert('Livro cadastrado com sucesso!');
-      this.router.navigate(['listaLivros']);
+      this.cadastroService.showMessage('Livro cadastrado com sucesso!');
+      setTimeout(() => {
+        this.router.navigate(['listaLivros']);
+      }, 1050);
     });
   }
 }

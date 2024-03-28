@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatCardModule } from '@angular/material/card';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CadastroService } from './../../services/cadastro.service';
 import { Livro } from './../../model/Livro';
@@ -75,8 +74,10 @@ export class LivroUpdateComponent implements OnInit {
       this.livro.anoLancamento = formValues.anoLancamento;
 
       this.cadastroService.update(this.livro).subscribe(() => {
-        alert('Livro atualizado com sucesso!');
-        this.router.navigate(['listaLivros']);
+        this.cadastroService.showMessage('Livro editado com sucesso!');
+        setTimeout(() => {
+          this.router.navigate(['listaLivros']);
+        }, 1050);
       });
     }
   }

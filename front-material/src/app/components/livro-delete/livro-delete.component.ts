@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CadastroService } from './../../services/cadastro.service';
 import { Livro } from './../../model/Livro';
-import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-livro-delete',
@@ -53,8 +52,10 @@ export class LivroDeleteComponent implements OnInit {
 
   excluir(): void {
     this.cadastroService.delete(this.livro).subscribe(() => {
-      alert('Livro excluído com sucesso!');
-      this.router.navigate(['listaLivros']);
+      this.cadastroService.showMessage('Livro excluído com sucesso!');
+      setTimeout(() => {
+        this.router.navigate(['listaLivros']);
+      }, 1050);
     });
   }
 
